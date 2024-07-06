@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="крым" />
+    <meta
+      name="keywords"
+      content="крым, республика крым, что посмотреть в крыму, красивые места крым"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Гид по Крыму</title>
+    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon" />
+    <!-- <link rel="stylesheet" href="./style.css" /> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Biryani:wght@200&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Actor&family=Baloo+Bhai+2:wght@400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header class="header">
+      <img src="./img/крым2.png" alt="крым" class="header__img" />
+
+      <div class="header__text">
+        <h2 class="header__title">ГИД ПО КРЫМУ<span>.</span>online</h2>
+        <p class="header__subtitle">путешествуем вместе</p>
+      </div>
+    </header>
+    <main class="main">
+      <div class="container">
+        <div class="map" id="map">
+          <!-- <script
+            type="text/javascript"
+            charset="utf-8"
+            async
+            src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A75f2d66cf7759cb7577c58d5ba7c02bd74bc327b81b6b362effa609de6c3abd4&amp;lang=ru_RU&amp;scroll=true"
+          ></script> -->
+        </div>
+        <div class="search">
+          <input
+            type="text"
+            value=""
+            placeholder="Введите название места..."
+            class="search__input"
+            id="search-input"
+          />
+          <div class="search__matches">
+            <ul id="matches-list">
+              <!-- <li><a href="sevas">Севастополь</a></li>
+              <li><a href="yalta">Ялта</a></li> -->
+            </ul>
+          </div>
+        </div>
+        <div class="article__overlay" id="card-overlay">
+          <div class="card__container">
+            <article class="card" id="card">
+              <div class="media-container" id="media-container">
+                <img
+                  src="./img/республика крым.jpg"
+                  alt="республика крым"
+                  class="card__img"
+                />
+              </div>
+              <div class="card__main">
+                <h1 class="card__name">Республика Крым, РФ</h1>
+                <p class="card__description">
+                  Республика Крым, Российская Федерация
+                </p>
+              </div>
+
+              <button class="button card__button" id="close-card-button">
+                Перейти к карте
+              </button>
+
+              <nav>
+                <ul class="card__nav">
+                  <!-- МЕНЯЕМ (вставляем навигатор) -->
+                  <li class="nav__item">
+                    <a
+                      href="https://yandex.ru/maps?rtext=44.605841%2C33.521634~45.389200%2C33.993751&rtt=pd"
+                      target="_blank"
+                      ><img src="./img/icons/маршрут синий.png" alt=""
+                    /></a>
+                  </li>
+                  <li class="nav__item" id="shareButton">
+                    <img src="./img/icons/поделиться синий.png" alt="" />
+                  </li>
+                  <li class="nav__item">
+                    <img src="./img/icons/сохранить синий.png" alt="" />
+                  </li>
+                  <!-- МЕНЯЕМ (вставляем часть кода после слеш до вопроса) -->
+                  <li
+                    class="nav__item"
+                    id="playVideo"
+                    data-src="527Wr2LOZec"
+                    data-title="Республика Крым"
+                  >
+                    <img src="./img/icons/видеоплеер синий.png" alt="" />
+                  </li>
+                </ul>
+              </nav>
+              <div class="card__info">
+                <div class="card__info_nav">
+                  <a href="#" class="linkToMain active" id="toMain">Основное</a>
+                  <a href="#" class="linkToHistory" id="toHistory">История</a>
+                  <a href="#" class="linkToFun" id="toFun"
+                    >Достопримечательности</a
+                  >
+                </div>
+                <div class="card__info_text" id="container">
+                  <section id="main" class="info-text__section" id="toMain">
+                    <h3>Основное</h3>
+                    <p>
+                      БЛАБАЛАБАЛАБАЛАЛАЛ папвоадпва влаоплваоплвоап влаовлопв
+                    </p>
+                  </section>
+                  <section
+                    id="history"
+                    class="info-text__section none"
+                    id="toHistory"
+                  >
+                    <h3>История</h3>
+                    <p>УУУУУУУУУУУУУУУУУУУУУУУУ</p>
+                  </section>
+                  <section id="fun" class="info-text__section none" id="toFun">
+                    <h3>Достопримечательности</h3>
+                    <p>HAHAHHA</p>
+                  </section>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div class="card-small none" id="card-small">
+          <button class="button small-card-button" id="small-card-button">
+            развернуть
+          </button>
+          <div class="card__main small-card__main">
+            <h1 class="card__name">Республика Крым, РФ</h1>
+            <p class="card__description">
+              (Республика Крым, Российская Федерация)
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="buttons-mobile">
+        <div class="saved">
+          <button id="button-saved" class="buttons-mobile__button">
+            <img src="./img/icons/кнопка сохранить.png" alt="" />
+          </button>
+        </div>
+        <div class="routes-button__wrapper">
+          <button id="button-routes" class="buttons-mobile__button">
+            <img src="./img/icons/кнопка маршруты.png" alt="" />
+          </button>
+          <div class="routes-mobile none" id="routes-mobile">
+            <p class="categories__title">Маршруты</p>
+            <ul>
+              <li>
+                <button class="route-button">
+                  <img
+                    src="./img/icons/дайвинг.png"
+                    alt=""
+                    class="route-icon"
+                  />
+                  <p class="route-name">Дайв маршруты</p>
+                </button>
+              </li>
+              <li>
+                <button class="route-button">
+                  <img
+                    src="./img/icons/пеший маршрут.png"
+                    alt=""
+                    class="route-icon"
+                  />
+                  <p class="route-name">Пешие маршруты</p>
+                </button>
+              </li>
+              <li>
+                <button class="route-button">
+                  <img
+                    src="./img/icons/вело маршрут.png"
+                    alt=""
+                    class="route-icon"
+                  />
+                  <p class="route-name">Вело маршруты</p>
+                </button>
+              </li>
+              <li>
+                <button class="route-button">
+                  <img
+                    src="./img/icons/каякинг.png"
+                    alt=""
+                    class="route-icon"
+                  />
+                  <p class="route-name">Морские маршруты</p>
+                </button>
+              </li>
+              <li>
+                <button class="route-button">
+                  <img
+                    src="./img/icons/горные маршруты.png"
+                    alt=""
+                    class="route-icon"
+                  />
+                  <p class="route-name">Горные маршруты</p>
+                </button>
+              </li>
+              <li>
+                <button class="route-button">
+                  <img
+                    src="./img/icons/авто маршрут.png"
+                    alt=""
+                    class="route-icon"
+                  />
+                  <p class="route-name">Авто маршруты</p>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="places-button__wrapper">
+          <button
+            id="button-places"
+            class="buttons-mobile__button places-button"
+          >
+            <img src="./img/icons/кнопка категории.png" alt="" />
+          </button>
+          <div class="categories__list--mobile none" id="categories-mobile">
+            <p class="categories__title">Категории выбора</p>
+            <ul>
+              <li>
+                <button class="category-button">
+                  <img
+                    src="./img/icons/города.png"
+                    alt=""
+                    class="category-icon"
+                  />
+                  <p class="category-name">Города</p>
+                </button>
+              </li>
+              <li>
+                <button class="category-button">
+                  <img
+                    src="./img/icons/смотровые площадки.png"
+                    alt=""
+                    class="category-icon"
+                  />
+                  <p class="category-name">Смотровые площадки</p>
+                </button>
+              </li>
+              <li>
+                <button class="category-button">
+                  <img
+                    src="./img/icons/пляжи.png"
+                    alt=""
+                    class="category-icon"
+                  />
+                  <p class="category-name">Пляжи</p>
+                </button>
+              </li>
+              <li>
+                <button class="category-button">
+                  <img
+                    src="./img/icons/набережные.png"
+                    alt=""
+                    class="category-icon"
+                  />
+                  <p class="category-name">Набережные</p>
+                </button>
+              </li>
+              <li>
+                <button class="category-button">
+                  <img
+                    src="./img/icons/парки.png"
+                    alt=""
+                    class="category-icon"
+                  />
+                  <p class="category-name">Парки</p>
+                </button>
+              </li>
+              <li>
+                <button class="category-button">
+                  <img
+                    src="./img/icons/музеи театры.png"
+                    alt=""
+                    class="category-icon"
+                  />
+                  <p class="category-name">Музеи, Театры</p>
+                </button>
+              </li>
+              <li>
+                <button class="category-button">
+                  <img
+                    src="./img/icons/дворцы.png"
+                    alt=""
+                    class="category-icon"
+                  />
+                  <p class="category-name">Дворцы</p>
+                </button>
+              </li>
+              <li>
+                <button class="category-button">
+                  <img
+                    src="./img/icons/крепости.png"
+                    alt=""
+                    class="category-icon"
+                  />
+                  <p class="category-name">Крепости, Руины</p>
+                </button>
+              </li>
+              <li>
+                <button class="category-button">
+                  <img
+                    src="./img/icons/памятники.png"
+                    alt=""
+                    class="category-icon"
+                  />
+                  <p class="category-name">Памятники, Мемориалы</p>
+                </button>
+              </li>
+              <li>
+                <button class="category-button">
+                  <img
+                    src="./img/icons/военные достопримечательности.png"
+                    alt=""
+                    class="category-icon"
+                  />
+                  <p class="category-name">Доты, Батареи</p>
+                </button>
+              </li>
+              <li>
+                <button class="category-button">
+                  <img
+                    src="./img/icons/храмы.png"
+                    alt=""
+                    class="category-icon"
+                  />
+                  <p class="category-name">Монастыри</p>
+                </button>
+              </li>
+              <li>
+                <button class="category-button">
+                  <img
+                    src="./img/icons/маяки.png"
+                    alt=""
+                    class="category-icon"
+                  />
+                  <p class="category-name">Маяки</p>
+                </button>
+              </li>
+              <li>
+                <button class="category-button">
+                  <img
+                    src="./img/icons/горные маршруты.png"
+                    alt=""
+                    class="category-icon"
+                  />
+                  <p class="category-name">Горные маршруты</p>
+                </button>
+              </li>
+              <li>
+                <button class="category-button">
+                  <img
+                    src="./img/icons/каньоны.png"
+                    alt=""
+                    class="category-icon"
+                  />
+                  <p class="category-name">Каньоны</p>
+                </button>
+              </li>
+              <li>
+                <button class="category-button">
+                  <img
+                    src="./img/icons/водопады.png"
+                    alt=""
+                    class="category-icon"
+                  />
+                  <p class="category-name">Водопады</p>
+                </button>
+              </li>
+              <li>
+                <button class="category-button">
+                  <img
+                    src="./img/icons/пещерные города.png"
+                    alt=""
+                    class="category-icon"
+                  />
+                  <p class="category-name">Пещерные города</p>
+                </button>
+              </li>
+              <li>
+                <button class="category-button">
+                  <img
+                    src="./img/icons/водоемы.png"
+                    alt=""
+                    class="category-icon"
+                  />
+                  <p class="category-name">Водоемы</p>
+                </button>
+              </li>
+              <li>
+                <button class="category-button">
+                  <img
+                    src="./img/icons/розовые озера.png"
+                    alt=""
+                    class="category-icon"
+                  />
+                  <p class="category-name">Розовые озера</p>
+                </button>
+              </li>
+              <li>
+                <button class="category-button">
+                  <img
+                    src="./img/icons/автокемпенги.png"
+                    alt=""
+                    class="category-icon"
+                  />
+                  <p class="category-name">Автокемпинг</p>
+                </button>
+              </li>
+              <li>
+                <button class="category-button">
+                  <img
+                    src="./img/icons/кемпенги.png"
+                    alt=""
+                    class="category-icon"
+                  />
+                  <p class="category-name">Кемпинг</p>
+                </button>
+              </li>
+              <li>
+                <button class="category-button">
+                  <img
+                    src="./img/icons/место для пикника.png"
+                    alt=""
+                    class="category-icon"
+                  />
+                  <p class="category-name">Место для пикника</p>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="contacts">
+        <article>
+          <h4 class="contacts__title">Как с нами связаться?</h4>
+          <button class="button contacts-button" id="write-button">
+            написать нам
+          </button>
+        </article>
+        <img
+          src="./img/illustration-set.png"
+          alt="icons"
+          class="contacts__img"
+        />
+        <article>
+          <h4 class="contacts__title">
+            Расскажи всем, о своих местах, маршрутах, событиях!
+          </h4>
+          <button class="button contacts-button" id="add-place-button">
+            добавить место
+          </button>
+        </article>
+      </div>
+
+      <!-- ФОРМЫ -->
+      <div class="form-wrapper none" id="form">
+        <form
+          action="./assets/mail2.php"
+          method="post"
+          class="form__feedback"
+          id="gf"
+        >
+          <input type="text" name="name" id="" placeholder="Имя" required />
+          <input type="email" name="mail" id="" placeholder="Email" required />
+          <textarea
+            class="form__textarea"
+            name="text"
+            placeholder="Опишите маршрут, место или событие;&#10;&#10;Укажите точки маршрута согласно порядку или место события (координаты);&#10;&#10;Прикрепите фотографии;"
+            required
+          ></textarea>
+          <div class="form__buttons">
+            <div class="choose-file">
+              <input type="file" name="file" id="" />
+              <p>Прикрепить фото</p>
+            </div>
+            <button type="submit" class="form__send-button">Отправить</button>
+          </div>
+
+          <button type="button" class="close__button" id="close-form"></button>
+        </form>
+      </div>
+      <div class="form-wrapper none" id="form2" name="form">
+        <form action="./assets/mail.php" method="post" class="form__feedback">
+          <input type="text" name="name" id="" placeholder="Имя" required />
+          <input type="email" name="mail" id="" placeholder="Email" required />
+          <input type="tel" name="tel" id="" placeholder="Номер телефона" />
+          <textarea
+            name="text"
+            class="form__textarea"
+            placeholder="Опишите ваш вопрос..."
+            required
+          ></textarea>
+          <button type="submit" class="form__send-button">Отправить</button>
+          <button type="button" class="close__button" id="close-form2"></button>
+        </form>
+      </div>
+      <div class="preload" id="preload">
+        <div class="loader" id="loader">
+          <div class="spinner-box">
+            <div class="circle-border">
+              <div class="circle-core"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- <script src="https://api-maps.yandex.ru/v3/?apikey=API_KEY_FROM_.ENV&lang=ru_RU"></script> -->
+    <!-- <script src="./js/script.js"></script> -->
+  </body>
+</html>
