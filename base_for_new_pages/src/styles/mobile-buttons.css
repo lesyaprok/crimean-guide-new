@@ -1,0 +1,60 @@
+.buttons-mobile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  z-index: 2;
+}
+
+.buttons-mobile button {
+  border: none;
+  background: transparent;
+}
+
+.buttons-mobile__button img {
+  width: 100%;
+  height: 100%;
+}
+
+.activeBlock {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  background: #1a1b298f;
+  transition: all 0.5s ease-in-out;
+}
+
+.places-button__wrapper,
+.routes-button__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  width: 100%;
+}
+
+.places-button {
+  height: fit-content;
+  margin-right: 4px;
+  transition: transform 0.5s ease-in-out;
+}
+
+@media screen and (min-width: 1000px) {
+  .buttons-mobile {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 999px) {
+  .buttons-mobile {
+    height: 100%;
+    position: fixed;
+    display: flex;
+    align-items: last baseline;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
