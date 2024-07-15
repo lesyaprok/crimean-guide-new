@@ -1,0 +1,56 @@
+@media screen and (min-width: 1000px) {
+  .container {
+    flex-direction: row-reverse;
+  }
+  .left-content {
+    display: block;
+    position: relative;
+    width: 30vw;
+    height: calc(100vh - 126px);
+    background: #f7f6f6;
+    overflow-y: scroll;
+  }
+  .article__overlay {
+    display: block;
+    position: static;
+    background-color: transparent;
+  }
+  .card-container {
+    width: 30vw;
+  }
+  .card {
+    margin: 0;
+    color: #ffffffb2;
+  }
+  .card__button {
+    display: none;
+  }
+  .search {
+    position: relative;
+  }
+  .show-categories-button {
+    display: inline-block;
+  }
+  .map {
+    position: relative;
+    width: 70vw;
+  }
+  .map__routes {
+    padding: 10px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    /* width: 100%; */
+    display: flex !important;
+  }
+  .contacts {
+    justify-content: space-between;
+    margin-top: 20px;
+    background: url("../img/people.png") no-repeat;
+    background-position: center bottom;
+    /* background-size: contain; */
+  }
+  .contacts article {
+    width: 30vw;
+  }
+}
