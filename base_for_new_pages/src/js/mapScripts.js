@@ -2,7 +2,7 @@ import { regions } from "./constants/transformedPolygonCoordinates.js";
 import { points } from "./constants/pointsCoordinates.js";
 
 const CENTER = [45.293871646881776, 34.78162312890623];
-const ZOOM = 7.5;
+const ZOOM = window.innerWidth < 700 ? 7 : 7.5;
 
 ymaps.ready(init);
 

@@ -2,12 +2,12 @@ import { regions } from "./constants/transformedPolygonCoordinates.js";
 import { points } from "./constants/pointsCoordinates.js";
 
 const CENTER = [45.293871646881776, 34.78162312890623];
-const ZOOM = 7.5;
+const ZOOM = window.innerWidth < 700 ? 7 : 7.5;
 
 ymaps.ready(init);
 
 function init() {
-  var myMap = new ymaps.Map(
+  const myMap = new ymaps.Map(
     "map",
     {
       center: CENTER,
@@ -16,6 +16,8 @@ function init() {
     },
     {provider: 'yandex#search'  }
   );
+
+  const clusterer = new ymaps.Clusterer();
 
   regions.map(({ geometry, name, description, link, properties }) => {
     const content = `<article class="map-baloon">
@@ -45,7 +47,6 @@ function init() {
         strokeColor: properties.stroke,
         opacity: properties["fill-opacity"],
         strokeWidth: properties["stroke-width"],
-        strokeStyle: "shortdash",
         openHintOnHover: true,
       }
     );
@@ -82,6 +83,8 @@ function init() {
         }
       );
       myMap.geoObjects.add(point);
+      clusterer.add(point);
     }
   );
+  myMap.geoObjects.add(clusterer);
 }
