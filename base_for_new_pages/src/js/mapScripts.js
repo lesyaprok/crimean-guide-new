@@ -1,21 +1,26 @@
 import { regions } from "./constants/transformedPolygonCoordinates.js";
 import { points } from "./constants/pointsCoordinates.js";
+import { categories } from "./constants/categories/categories.js";
 
-const CENTER = [45.293871646881776, 34.78162312890623];
-const ZOOM = window.innerWidth < 700 ? 7 : 7.5;
+const CENTER = [44.450293, 34.063253];
+const ZOOM = 11;
+const categoriesList = document.getElementById("categories-desktop");
 
 ymaps.ready(init);
 
 function init() {
-  var myMap = new ymaps.Map(
+  const myMap = new ymaps.Map(
     "map",
     {
       center: CENTER,
       zoom: ZOOM,
       controls: ["geolocationControl", "fullscreenControl"],
     },
-    {provider: 'yandex#search'  }
+    { provider: "yandex#search" }
   );
+  const clusterer = new ymaps.Clusterer();
+  const categoryClusterer = new ymaps.Clusterer();
+  const categoriesCollection = new ymaps.GeoObjectCollection();
 
   regions.map(({ geometry, name, description, link, properties }) => {
     const content = `<article class="map-baloon">
@@ -43,18 +48,50 @@ function init() {
         // Описываем опции геообъекта.
         fillColor: properties.fill,
         strokeColor: properties.stroke,
-        opacity: properties["fill-opacity"],
+        fillOpacity: properties["fill-opacity"],
         strokeWidth: properties["stroke-width"],
-        strokeStyle: "shortdash",
+        strokeOpacity: 1,
         openHintOnHover: true,
       }
     );
     myMap.geoObjects.add(polygon);
   });
 
-  points.map(
-    ({ name, description, link, buttonText, geometry, properties }) => {
-      const content = `<article class="map-baloon">
+  [...points].map((point) => {
+    const createdPoint = createPoint(point);
+    myMap.geoObjects.add(createdPoint);
+    clusterer.add(createdPoint);
+  });
+
+  myMap.geoObjects.add(clusterer);
+
+  categoriesList.addEventListener("click", (e) => {
+    const category = e.target.innerText;
+    if (!category || !categories[category]) return;
+
+    categoriesCollection.removeAll();
+    categoryClusterer.removeAll();
+
+    categories[category].map((item) => {
+      const createdPoint = createPoint(item);
+      categoriesCollection.add(createdPoint);
+      categoryClusterer.add(createdPoint);
+    });
+    myMap.geoObjects.add(categoriesCollection);
+    myMap.geoObjects.add(categoryClusterer);
+    myMap.setBounds(categoryClusterer.getBounds());
+  });
+}
+
+function createPoint({
+  name,
+  description,
+  buttonText,
+  link,
+  geometry,
+  properties,
+}) {
+  const content = `<article class="map-baloon">
               <img src="" alt="" class="map-baloon__img">
               <div class="map-baloon__main">
                   <h2 class="map-baloon__name">${name}</h2>
@@ -65,23 +102,21 @@ function init() {
                   </div>
               </div>
           </article>`;
-      const point = new ymaps.GeoObject(
-        {
-          geometry: {
-            type: "Point", // тип геометрии - точка
-            coordinates: geometry.coordinates, // координаты точки
-          },
-          properties: {
-            iconCaption: name,
-            balloonContent: content,
-          },
-        },
-        {
-          preset: "islands#circleIcon",
-          iconColor: properties["marker-color"],
-        }
-      );
-      myMap.geoObjects.add(point);
+  const point = new ymaps.GeoObject(
+    {
+      geometry: {
+        type: "Point", // тип геометрии - точка
+        coordinates: geometry.coordinates, // координаты точки
+      },
+      properties: {
+        iconCaption: name,
+        balloonContent: content,
+      },
+    },
+    {
+      preset: "islands#circleIcon",
+      iconColor: properties["marker-color"],
     }
   );
+  return point;
 }

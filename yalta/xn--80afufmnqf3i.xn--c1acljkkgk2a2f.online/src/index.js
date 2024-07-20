@@ -1,5 +1,6 @@
 import "./style.css";
 import "./js/main.js";
+import "./js/categories.js";
 import "./js/card.js";
 import "./js/share.js";
 import "./js/video.js";
