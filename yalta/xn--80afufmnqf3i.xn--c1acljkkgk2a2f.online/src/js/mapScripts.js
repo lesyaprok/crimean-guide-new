@@ -1,10 +1,13 @@
 import { regions } from "./constants/transformedPolygonCoordinates.js";
 import { points } from "./constants/pointsCoordinates.js";
 import { categories } from "./constants/categories/categories.js";
+import { toggleVisibilityOfElement } from "./main.js";
 
 const CENTER = [44.450293, 34.063253];
 const ZOOM = 11;
 const categoriesList = document.getElementById("categories-desktop");
+const categoriesListMobile = document.getElementById("categories-mobile");
+const placesWrapper = document.querySelector(".places-button__wrapper");
 
 ymaps.ready(init);
 
@@ -65,22 +68,30 @@ function init() {
 
   myMap.geoObjects.add(clusterer);
 
-  categoriesList.addEventListener("click", (e) => {
-    const category = e.target.innerText;
-    if (!category || !categories[category]) return;
+  [categoriesList, categoriesListMobile].forEach((element) =>
+    element.addEventListener("click", (e) => {
+      const category = e.target.innerText;
+      if (!category || !categories[category]) return;
 
-    categoriesCollection.removeAll();
-    categoryClusterer.removeAll();
+      categoriesCollection.removeAll();
+      categoryClusterer.removeAll();
 
-    categories[category].map((item) => {
-      const createdPoint = createPoint(item);
-      categoriesCollection.add(createdPoint);
-      categoryClusterer.add(createdPoint);
-    });
-    myMap.geoObjects.add(categoriesCollection);
-    myMap.geoObjects.add(categoryClusterer);
-    myMap.setBounds(categoryClusterer.getBounds());
-  });
+      categories[category].map((item) => {
+        const createdPoint = createPoint(item);
+        categoriesCollection.add(createdPoint);
+        categoryClusterer.add(createdPoint);
+      });
+
+      myMap.geoObjects.add(categoriesCollection);
+      myMap.geoObjects.add(categoryClusterer);
+      myMap.setBounds(categoryClusterer.getBounds());
+
+      if (element.id === "categories-mobile") {
+        placesWrapper.classList.toggle("activeBlock");
+        categoriesListMobile.classList.toggle("none");
+      }
+    })
+  );
 }
 
 function createPoint({
@@ -102,7 +113,6 @@ function createPoint({
                   </div>
               </div>
           </article>`;
-
   const point = new ymaps.GeoObject(
     {
       geometry: {
@@ -120,5 +130,4 @@ function createPoint({
     }
   );
   return point;
-
 }

@@ -1,23 +1,21 @@
 import { regions } from "./constants/transformedPolygonCoordinates.js";
 import { points } from "./constants/pointsCoordinates.js";
 
-const CENTER = [45.293871646881776, 34.78162312890623];
-const ZOOM = window.innerWidth < 700 ? 7 : 7.5;
+const CENTER = [44.54879107660936, 33.52975719489878];
+const ZOOM = 10.2;
 
 ymaps.ready(init);
 
 function init() {
-  const myMap = new ymaps.Map(
+  var myMap = new ymaps.Map(
     "map",
     {
       center: CENTER,
       zoom: ZOOM,
       controls: ["geolocationControl", "fullscreenControl"],
     },
-    {provider: 'yandex#search'  }
+    { provider: "yandex#search" }
   );
-
-  const clusterer = new ymaps.Clusterer();
 
   regions.map(({ geometry, name, description, link, properties }) => {
     const content = `<article class="map-baloon">
@@ -35,7 +33,7 @@ function init() {
           type: "Polygon",
           coordinates: geometry.coordinates,
           // Задаем правило заливки внутренних контуров по алгоритму "nonZero".
-          fillRule: "nonZero",
+          // fillRule: "nonZero",
         },
         properties: {
           balloonContent: content,
@@ -45,8 +43,10 @@ function init() {
         // Описываем опции геообъекта.
         fillColor: properties.fill,
         strokeColor: properties.stroke,
-        opacity: properties["fill-opacity"],
+        fillOpacity: properties["fill-opacity"],
         strokeWidth: properties["stroke-width"],
+        strokeStyle: "shortdash",
+        strokeOpacity: 1,
         openHintOnHover: true,
       }
     );
@@ -83,8 +83,6 @@ function init() {
         }
       );
       myMap.geoObjects.add(point);
-      clusterer.add(point);
     }
   );
-  myMap.geoObjects.add(clusterer);
 }

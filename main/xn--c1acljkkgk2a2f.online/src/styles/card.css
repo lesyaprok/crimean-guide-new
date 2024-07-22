@@ -143,7 +143,7 @@
 
 .card-small {
   position: absolute;
-  bottom: 67px;
+  bottom: 10px;
   padding: 0 10px 10px;
   width: 90%;
   text-align: center;
@@ -155,7 +155,7 @@
 
 @media screen and (max-width: 699px) {
   .card-small {
-    bottom: 40px;
+    /* bottom: 40px; */
   }
 }
 
