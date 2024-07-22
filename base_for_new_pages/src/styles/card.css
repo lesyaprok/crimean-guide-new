@@ -153,12 +153,6 @@
   z-index: 2;
 }
 
-@media screen and (max-width: 699px) {
-  .card-small {
-    /* bottom: 40px; */
-  }
-}
-
 @media screen and (max-width: 600px) {
   .card-small {
     bottom: 10px;

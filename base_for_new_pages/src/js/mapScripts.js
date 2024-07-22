@@ -102,6 +102,7 @@ function createPoint({
                   </div>
               </div>
           </article>`;
+
   const point = new ymaps.GeoObject(
     {
       geometry: {
@@ -119,4 +120,5 @@ function createPoint({
     }
   );
   return point;
+
 }
