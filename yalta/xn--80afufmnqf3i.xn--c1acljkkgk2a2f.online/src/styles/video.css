@@ -7,7 +7,9 @@
   right: 0;
   left: 0;
   bottom: 0;
-  background: #000000d2;
+  background: url("../img/giphy.webp") no-repeat;
+  background-position: center center;
+  background-size: cover;
 }
 
 iframe {
