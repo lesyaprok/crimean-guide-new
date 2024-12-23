@@ -43,11 +43,14 @@
 }
 
 .media-container {
+  width: 80%;
   position: relative;
+  border-radius: 3px;
 }
 
 .card__img {
   width: 100%;
+  border-radius: 3px;
 }
 
 .card__name {

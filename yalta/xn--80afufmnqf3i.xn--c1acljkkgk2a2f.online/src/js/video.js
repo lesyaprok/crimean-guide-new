@@ -1,7 +1,13 @@
 const playVideo = document.getElementById("playVideo");
 
 playVideo.addEventListener("click", () =>
-  showVideo("media-container", playVideo.dataset.src, playVideo.dataset.title)
+  !document.getElementById("video-wrap")
+    ? showVideo(
+        "media-container",
+        playVideo.dataset.src,
+        playVideo.dataset.title
+      )
+    : null
 );
 
 function showVideo(id, src, title) {
